@@ -1,4 +1,4 @@
-package org.scalatrain
+package com.jayway
 
 import org.junit.runner.RunWith
 import org.specs2.Specification

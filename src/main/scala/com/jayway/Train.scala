@@ -1,4 +1,4 @@
-package org.scalatrain
+package com.jayway
 
 /**
  * @author Amir Moulavi
