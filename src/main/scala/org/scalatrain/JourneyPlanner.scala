@@ -1,7 +1,7 @@
 package org.scalatrain
 
 /**
- * User: amir
+ * @author Amir Moulavi
  */
 
 case class JourneyPlanner(trains:Set[Train]) {

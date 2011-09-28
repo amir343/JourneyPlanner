@@ -1,7 +1,7 @@
 package org.scalatrain
 
 /**
- * User: amir
+ * @author Amir Moulavi
  */
 
 class Time(val hours:Int = 0, val minutes:Int = 0) {
@@ -15,7 +15,7 @@ class Time(val hours:Int = 0, val minutes:Int = 0) {
 
   def -(that:Time):Int = minus(that)
 
-  def <(that:Time):Boolean = (this.hours < that.hours) || ( (this.hours >= that.hours) ) // TODO
+  def <(that:Time):Boolean = (this.hours < that.hours) || ( (this.hours == that.hours) && (this.minutes <= that.minutes) )
 
 }
 

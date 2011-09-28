@@ -5,7 +5,7 @@ import org.junit.runner.RunWith
 import org.specs2.runner.JUnitRunner
 
 /**
- * User: amir
+ * @author Amir Moulavi
  */
 @RunWith(classOf[JUnitRunner])
 class JourneyPlannerSpec extends Specification { def is =
