@@ -16,20 +16,20 @@ class JourneyPlannerSpec extends Specification { def is =
     "Should return the (time, train) for a specific station" ! testStopsAt
   end
 
+  val train1 = Train("Nighttrain", "fddskj", Seq( (Time(12,30),Station("Stockholm")), (Time(18,45), Station("Lund")) ))
+  val train2 = Train("Nighttrain", "fd3gdgj", Seq( (Time(2,30),Station("Malmo")), (Time(7,45), Station("Lund")) ))
+
   def testStations = JourneyPlanner(
-    Set( Train("Nighttrain", "fddskj", Seq( (Time(12,30),Station("Stockholm")), (Time(18,45), Station("Lund")) )),
-         Train("Nighttrain", "fd3gdgj", Seq( (Time(2,30),Station("Malmo")), (Time(7,45), Station("Lund")) )))
+    Set( train1, train2 )
   ).stations mustEqual Set(Station("Stockholm"), Station("Lund"), Station("Malmo"))
 
 
   def testStationExistence = JourneyPlanner(
-    Set( Train("Nighttrain", "fddskj", Seq( (Time(12,30),Station("Stockholm")), (Time(18,45), Station("Lund")) )),
-         Train("Nighttrain", "fd3gdgj", Seq( (Time(2,30),Station("Malmo")), (Time(7,45), Station("Lund")) )))
+    Set( train1, train2 )
   ).trainsAt(Station("Malmo")).size mustEqual 1
 
   def testStopsAt = JourneyPlanner(
-    Set( Train("Nighttrain", "fddskj", Seq( (Time(12,30),Station("Stockholm")), (Time(18,45), Station("Lund")) )),
-         Train("Nighttrain", "fd3gdgj", Seq( (Time(2,30),Station("Malmo")), (Time(7,45), Station("Lund")) )))
+    Set( train1, train2 )
   ).stopsAt(Station("Stockholm")).size mustEqual 1
 
 
