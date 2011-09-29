@@ -17,6 +17,8 @@ class Time(val hours:Int = 0, val minutes:Int = 0) {
 
   def <(that:Time):Boolean = (this.hours < that.hours) || ( (this.hours == that.hours) && (this.minutes <= that.minutes) )
 
+  override val toString:String = "%02d:%02d".format(hours, minutes)
+
 }
 
 object Time {

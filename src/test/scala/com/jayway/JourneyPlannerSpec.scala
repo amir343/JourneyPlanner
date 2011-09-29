@@ -16,8 +16,8 @@ class JourneyPlannerSpec extends Specification { def is =
     "Should return the (time, train) for a specific station" ! testStopsAt
   end
 
-  val train1 = Train("Nighttrain", "fddskj", Seq( (Time(12,30),Station("Stockholm")), (Time(18,45), Station("Lund")) ))
-  val train2 = Train("Nighttrain", "fd3gdgj", Seq( (Time(2,30),Station("Malmo")), (Time(7,45), Station("Lund")) ))
+  val train1 = Train(TrainKind.Ice, "fddskj", Seq( (Time(12,30),Station("Stockholm")), (Time(18,45), Station("Lund")) ))
+  val train2 = Train(TrainKind.Ice, "fd3gdgj", Seq( (Time(2,30),Station("Malmo")), (Time(7,45), Station("Lund")) ))
 
   def testStations = JourneyPlanner(
     Set( train1, train2 )

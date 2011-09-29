@@ -20,9 +20,9 @@ class TrainSpec extends Specification { def is =
     "Non-monotically sorted times does throw an exception" ! testTime2
   end
 
-  def testOneStation = Train("Nighttrain", "Kgfer33", IndexedSeq( (Time(12,30),Station("Stockholm")) )) must throwAn[IAE]
-  def testTwoStations = Train("Nighttrain", "fdsfsgf", IndexedSeq( (Time(12,30),Station("Stockholm")), (Time(14,30),Station("Lund")) )) must not(throwAn[IAE])
-  def testTime1 = Train("Nighttrain", "fdsfsgf", IndexedSeq( (Time(12,30),Station("Stockholm")), (Time(14,30),Station("Lund")) )) must not(throwAn[IAE])
-  def testTime2 = Train("Nighttrain", "fdsfsgf", IndexedSeq( (Time(2,30),Station("Stockholm")), (Time(1,30),Station("Lund")) )) must throwAn[IAE]
+  def testOneStation = Train(TrainKind.Brb, "Kgfer33", IndexedSeq( (Time(12,30),Station("Stockholm")) )) must throwAn[IAE]
+  def testTwoStations = Train(TrainKind.Brb, "fdsfsgf", IndexedSeq( (Time(12,30),Station("Stockholm")), (Time(14,30),Station("Lund")) )) must not(throwAn[IAE])
+  def testTime1 = Train(TrainKind.Re, "fdsfsgf", IndexedSeq( (Time(12,30),Station("Stockholm")), (Time(14,30),Station("Lund")) )) must not(throwAn[IAE])
+  def testTime2 = Train(TrainKind.Re, "fdsfsgf", IndexedSeq( (Time(2,30),Station("Stockholm")), (Time(1,30),Station("Lund")) )) must throwAn[IAE]
 
 }
