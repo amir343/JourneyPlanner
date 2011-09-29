@@ -12,7 +12,8 @@ class JourneyPlannerSpec extends Specification { def is =
   "JourneyPlanner specification" ^
     "Stations should be initialized properly" ! testStations ^
     "Should check the existence of a station" ! testStationExistence ^
-    "Should return the (time, train) for a specific station" ! testStopsAt
+    "Should return the (time, train) for a specific station" ! testStopsAt ^
+    "Should return isShortTrip" ! testIsShortTrip
   end
 
   val ICE = TrainInfo.Ice("fdfdsfds")
@@ -33,5 +34,8 @@ class JourneyPlannerSpec extends Specification { def is =
     Set( train1, train2 )
   ).stopsAt(Station("Stockholm")).size mustEqual 1
 
+  def testIsShortTrip = JourneyPlanner(
+    Set( train1, train2 )
+  ).isShortTrip(Station("Stockholm"), Station("Lund")) must beTrue
 
 }

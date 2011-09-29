@@ -18,4 +18,14 @@ case class JourneyPlanner(trains:Set[Train]) {
         } yield (time, train)
   }
 
+  def isShortTrip(from:Station, to:Station):Boolean = {
+    trains.exists {
+      _.stations.dropWhile { _ != from } match {
+        case Seq(`from`, `to`, _*) => true
+        case Seq(`from`, _, `to`, _*) => true
+        case _ => false
+      }
+    }
+  }
+
 }

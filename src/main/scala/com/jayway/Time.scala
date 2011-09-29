@@ -15,7 +15,7 @@ class Time(val hours:Int = 0, val minutes:Int = 0) extends Ordered[Time] {
 
   def -(that:Time):Int = minus(that)
 
-  def compare(that:Time):Int = this.asMinutes - that.asMinutes
+  override def compare(that:Time):Int = this - that
 
   override val toString:String = "%02d:%02d".format(hours, minutes)
 
