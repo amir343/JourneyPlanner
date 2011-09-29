@@ -3,7 +3,6 @@ package com.jayway
 import org.specs2.Specification
 import org.junit.runner.RunWith
 import org.specs2.runner.JUnitRunner
-
 /**
  * @author Amir Moulavi
  */
@@ -16,8 +15,10 @@ class JourneyPlannerSpec extends Specification { def is =
     "Should return the (time, train) for a specific station" ! testStopsAt
   end
 
-  val train1 = Train(TrainKind.Ice, "fddskj", Seq( (Time(12,30),Station("Stockholm")), (Time(18,45), Station("Lund")) ))
-  val train2 = Train(TrainKind.Ice, "fd3gdgj", Seq( (Time(2,30),Station("Malmo")), (Time(7,45), Station("Lund")) ))
+  val ICE = TrainInfo.Ice("fdfdsfds")
+
+  val train1 = Train(ICE, Seq( (Time(12,30),Station("Stockholm")), (Time(18,45), Station("Lund")) ))
+  val train2 = Train(ICE, Seq( (Time(2,30),Station("Malmo")), (Time(7,45), Station("Lund")) ))
 
   def testStations = JourneyPlanner(
     Set( train1, train2 )

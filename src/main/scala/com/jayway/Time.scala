@@ -4,7 +4,7 @@ package com.jayway
  * @author Amir Moulavi
  */
 
-class Time(val hours:Int = 0, val minutes:Int = 0) {
+class Time(val hours:Int = 0, val minutes:Int = 0) extends Ordered[Time] {
 
   require(hours >= 0 && hours < 24)
   require(minutes >= 0 && minutes < 60)
@@ -15,7 +15,7 @@ class Time(val hours:Int = 0, val minutes:Int = 0) {
 
   def -(that:Time):Int = minus(that)
 
-  def <(that:Time):Boolean = (this.hours < that.hours) || ( (this.hours == that.hours) && (this.minutes <= that.minutes) )
+  def compare(that:Time):Int = this.asMinutes - that.asMinutes
 
   override val toString:String = "%02d:%02d".format(hours, minutes)
 
