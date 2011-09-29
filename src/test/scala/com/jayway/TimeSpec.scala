@@ -21,6 +21,7 @@ class TimeSpec extends Specification { def is =
     "LessThan: Time which is not less than" ! testLessThan3 ^
     "GreaterThan: Time with equal hour and different minutes -> true" ! testGreaterThan1 ^
     "toString method should return in the format HH:mm" ! testToString
+    "Serialization and deserializations test" ! testXml
   end
 
   def illegalHour = Time(-23, 34) must throwAn[IAE]
@@ -32,6 +33,11 @@ class TimeSpec extends Specification { def is =
   def testLessThan3 = Time(12,30) < Time(1,34) mustEqual false
   def testGreaterThan1 = Time(12,30) > Time(11,34) mustEqual true
   def testToString = Time(12,40).toString mustEqual "12:40"
+  def testXml = {
+    val serializedTime = Time(12,40)
+    val deserializedTime = Time.fromXml(serializedTime.toXML)
+    serializedTime mustEqual Some(deserializedTime)
+  }
 
 
 }

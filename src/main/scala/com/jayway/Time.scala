@@ -1,5 +1,8 @@
 package com.jayway
 
+import xml.Elem
+import java.util.NoSuchElementException
+
 /**
  * @author Amir Moulavi
  */
@@ -19,6 +22,8 @@ class Time(val hours:Int = 0, val minutes:Int = 0) extends Ordered[Time] {
 
   override val toString:String = "%02d:%02d".format(hours, minutes)
 
+  def toXML:Elem = <time hours={hours.toString} minutes={minutes.toString} />
+
 }
 
 object Time {
@@ -29,6 +34,19 @@ object Time {
 
   def apply(h:Int, m:Int):Time = {
     new Time(h, m)
+  }
+
+  def fromXml(xml:Elem):Option[Time] = {
+    def value(name:String) = try {
+      (xml \\ name).headOption map { _.text.toInt }
+    } catch {
+      case _:NumberFormatException => None
+    }
+    for {
+      h <- value("@hours")
+      m <- value("@minutes")
+      if xml.label == "time"
+    } yield Time(h, m)
   }
 
 }
